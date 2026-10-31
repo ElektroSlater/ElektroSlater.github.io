@@ -112,7 +112,7 @@
   var Sound = (function () {
     // Lautstärke: aus, leise (startet von selbst beim ersten Klick/Tippen) oder laut (per Knopf)
     var ac = null, master = null, noise = null, on = false, level = 0, seen = true;
-    var LEVELS = { off: 0, quiet: 0.14, loud: 0.9 };
+    var LEVELS = { off: 0, on: 0.4 };
     function init() {
       var AC = window.AudioContext || window.webkitAudioContext;
       if (!AC) return false;
@@ -168,33 +168,33 @@
     return { set: set, setVisible: setVisible, thunder: thunder };
   })();
 
-  // Ton: leise automatisch, sobald der Browser es erlaubt (erster Klick, Tipp oder Tastendruck).
-  // Browser verbieten Ton ganz ohne Zutun des Besuchers – daher dieser Weg.
+  // Ton ist von Anfang an AN. Browser lassen Ton aber erst nach dem ersten Klick, Tipp oder
+  // Tastendruck zu – deshalb startet das Gewitter spätestens dann. Der Knopf schaltet es AUS.
   var btn = document.querySelector('[data-sound]');
-  var mode = 'off', muted = false;
-  try { muted = localStorage.getItem('slater-ton') === 'aus'; } catch (e) {}
+  var muted = false;
+  try { muted = localStorage.getItem('slater-ton-v2') === 'aus'; } catch (e) {}
   function label() {
     if (!btn) return;
-    btn.setAttribute('aria-pressed', mode === 'off' ? 'false' : 'true');
-    btn.querySelector('span').textContent = mode === 'off' ? 'Gewitter hören' : mode === 'quiet' ? 'Lauter' : 'Ton aus';
+    btn.setAttribute('aria-pressed', muted ? 'false' : 'true');
+    btn.querySelector('span').textContent = muted ? 'Gewitter an' : 'Ton aus';
   }
-  function setMode(m) { mode = m; Sound.set(m); label(); }
-  function autoStart(e) {
+  var EVENTS = ['pointerdown', 'keydown', 'touchstart', 'click'];
+  function unlock(e) {
     if (btn && btn.contains(e.target)) return;
-    ['pointerdown', 'keydown', 'touchstart'].forEach(function (t) { document.removeEventListener(t, autoStart, true); });
-    if (!muted && mode === 'off') setMode('quiet');
+    EVENTS.forEach(function (t) { document.removeEventListener(t, unlock, true); });
+    if (!muted) Sound.set('on');
   }
+  label();
   if (!muted) {
-    ['pointerdown', 'keydown', 'touchstart'].forEach(function (t) { document.addEventListener(t, autoStart, true); });
-    // manche Browser erlauben Ton sofort – dann gleich leise starten
-    if (Sound.set('quiet')) { mode = 'quiet'; label(); } else { Sound.set('off'); }
+    Sound.set('on'); // klappt sofort, wenn der Browser es erlaubt
+    EVENTS.forEach(function (t) { document.addEventListener(t, unlock, true); });
   }
   if (btn) {
     btn.addEventListener('click', function () {
-      var next = mode === 'off' ? 'loud' : mode === 'quiet' ? 'loud' : 'off';
-      try { localStorage.setItem('slater-ton', next === 'off' ? 'aus' : 'an'); } catch (e) {}
-      muted = next === 'off';
-      setMode(next);
+      muted = !muted;
+      try { localStorage.setItem('slater-ton-v2', muted ? 'aus' : 'an'); } catch (e) {}
+      Sound.set(muted ? 'off' : 'on');
+      label();
     });
   }
 
