@@ -590,3 +590,6 @@ p { margin: 0 0 1em; }
 /* Ton-Knopf über dem weichen Übergang halten, damit er nicht in „Über mich“ hineinragt */
 .sound-btn { bottom: calc(22vh + 24px); }
 @media (max-width: 900px) { .sound-btn { bottom: calc(10vh + 20px); } }
+/* Ton-Knopf oben rechts unter der Menüleiste */
+.sound-btn { top: 112px; bottom: auto; }
+@media (max-width: 860px) { .sound-btn { top: 90px; bottom: auto; right: 12px; } }
