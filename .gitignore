@@ -1,0 +1,5 @@
+# Nur die Webseite selbst kommt auf GitHub – private Unterlagen bleiben auf dem Rechner
+bilder/
+TODO-vor-Livegang.md
+.claude/
+.DS_Store
