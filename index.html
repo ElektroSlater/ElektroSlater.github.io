@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#07090c">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2307090c'/%3E%3Cpath d='M36 6 14 36h14l-4 22 24-32H34z' fill='%23ffd23c'/%3E%3C/svg%3E">
   <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=3">
+  <link rel="stylesheet" href="css/style.css?v=4">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -19,7 +19,8 @@
     "telephone": "+4915567148947",
     "email": "elektro@slater.info",
     "address": { "@type": "PostalAddress", "streetAddress": "Nymphenburger Straße 46", "postalCode": "80335", "addressLocality": "München", "addressCountry": "DE" },
-    "areaServed": "München und Umgebung"
+    "areaServed": "München und Umgebung",
+    "openingHours": "Mo-Fr 08:00-18:00"
   }
   </script>
 </head>
@@ -31,6 +32,7 @@
   <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
   <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
   <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
   <symbol id="i-sound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></symbol>
@@ -45,7 +47,7 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="Elektro Slater – nach oben"><img src="img/logo-slater.png" alt="Slater" width="108" height="28"></a>
+    <a class="brand" href="#top" aria-label="Elektro Slater – nach oben"><img src="img/logo-slater.png" alt="Slater" width="208" height="54"></a>
     <button class="nav-toggle" aria-expanded="false" aria-controls="nav" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
     <nav class="nav" id="nav" aria-label="Hauptnavigation">
       <ul>
@@ -79,6 +81,7 @@
         <a class="btn btn--volt" href="tel:+4915567148947"><svg><use href="#i-phone"/></svg>+49 155 67148947</a>
         <a class="btn btn--ghost" href="#kontakt">Unverbindlich anfragen</a>
       </div>
+      <p class="hero-hours"><svg aria-hidden="true"><use href="#i-clock"/></svg>Erreichbar Montag bis Freitag, 8–18 Uhr</p>
     </div>
   </div>
   <button class="sound-btn" type="button" data-sound aria-pressed="false"><svg aria-hidden="true"><use href="#i-sound"/></svg><span>Gewitter hören</span></button>
@@ -370,26 +373,22 @@
   </section>
 
   <!-- Bilder -->
-  <section class="section reel-section" id="bilder" aria-label="Bilder aus meiner Arbeit">
-    <img class="side-shot side-shot--right" src="img/plasmakugel.jpg" alt="" aria-hidden="true" loading="lazy" data-flicker="glow">
+  <section class="section ring-section" id="bilder" aria-label="Bilder aus meiner Arbeit">
+    <canvas class="ring-bolts" aria-hidden="true"></canvas>
     <div class="wrap">
-      <div class="reel" data-reel>
-        <div class="reel-bg" aria-hidden="true"></div>
-        <canvas class="reel-bolt" aria-hidden="true"></canvas>
-        <img class="reel-shot" src="img/unterverteilung.jpg" alt="Neu verdrahtete Unterverteilung" loading="lazy" decoding="async">
-        <img class="reel-shot" src="img/treppenhaus-verteiler.jpg" alt="Arbeit am Verteiler im Treppenhaus" loading="lazy" decoding="async">
-        <img class="reel-shot" src="img/netzwerkschrank.jpg" alt="Netzwerkschrank mit Patchkabeln" loading="lazy" decoding="async">
-        <img class="reel-shot" src="img/sanierung-2.jpg" alt="Wohnung während der Elektrosanierung" loading="lazy" decoding="async">
-        <img class="reel-shot" src="img/verteiler.jpg" alt="Unterverteilung mit Leitungsschutzschaltern und Steckdosen" loading="lazy" decoding="async">
-        <img class="reel-shot" src="img/platinen.jpg" alt="Geöffnetes Gerät mit Steuerplatinen" loading="lazy" decoding="async">
-        <img class="reel-shot" src="img/aussenleuchte.jpg" alt="Montage einer Außenleuchte an der Hauswand" loading="lazy" decoding="async">
-        <img class="reel-shot" src="img/messgeraet.jpg" alt="Installationstester im Einsatz" loading="lazy" decoding="async">
-        <img class="reel-shot" src="img/kabeltrasse.jpg" alt="Kabeltrasse mit Leitungen" loading="lazy" decoding="async">
-        <img class="reel-shot" src="img/gewerbe.jpg" alt="Großküchengerät mit CEE-Steckern" loading="lazy" decoding="async">
-        <img class="reel-shot" src="img/modulsimulator.jpg" alt="Platine mit orangefarbener Verdrahtung" loading="lazy" decoding="async">
-        <img class="reel-shot" src="img/sanierung-1.jpg" alt="Leitungen setzen in der Wohnung" loading="lazy" decoding="async">
-        <div class="reel-flash" aria-hidden="true"></div>
-        <div class="reel-progress" aria-hidden="true"><i></i></div>
+      <div class="ring" data-ring>
+        <img class="ring-card" src="img/unterverteilung.jpg" alt="Neu verdrahtete Unterverteilung" loading="lazy" decoding="async">
+        <img class="ring-card" src="img/treppenhaus-verteiler.jpg" alt="Arbeit am Verteiler im Treppenhaus" loading="lazy" decoding="async">
+        <img class="ring-card" src="img/netzwerkschrank.jpg" alt="Netzwerkschrank mit Patchkabeln" loading="lazy" decoding="async">
+        <img class="ring-card" src="img/sanierung-2.jpg" alt="Wohnung während der Elektrosanierung" loading="lazy" decoding="async">
+        <img class="ring-card" src="img/verteiler.jpg" alt="Unterverteilung mit Leitungsschutzschaltern und Steckdosen" loading="lazy" decoding="async">
+        <img class="ring-card" src="img/platinen.jpg" alt="Geöffnetes Gerät mit Steuerplatinen" loading="lazy" decoding="async">
+        <img class="ring-card" src="img/aussenleuchte.jpg" alt="Montage einer Außenleuchte an der Hauswand" loading="lazy" decoding="async">
+        <img class="ring-card" src="img/messgeraet.jpg" alt="Installationstester im Einsatz" loading="lazy" decoding="async">
+        <img class="ring-card" src="img/kabeltrasse.jpg" alt="Kabeltrasse mit Leitungen" loading="lazy" decoding="async">
+        <img class="ring-card" src="img/gewerbe.jpg" alt="Großküchengerät mit CEE-Steckern" loading="lazy" decoding="async">
+        <img class="ring-card" src="img/modulsimulator.jpg" alt="Platine mit orangefarbener Verdrahtung" loading="lazy" decoding="async">
+        <img class="ring-card" src="img/sanierung-1.jpg" alt="Leitungen setzen in der Wohnung" loading="lazy" decoding="async">
       </div>
     </div>
   </section>
@@ -445,7 +444,9 @@
             <a href="tel:+4915567148947"><svg><use href="#i-phone"/></svg>+49 155 67148947</a>
             <a href="mailto:elektro@slater.info"><svg><use href="#i-mail"/></svg>elektro@slater.info</a>
             <span><svg><use href="#i-pin"/></svg>München und Umgebung</span>
+            <span><svg><use href="#i-clock"/></svg>Mo–Fr, 8–18 Uhr</span>
           </div>
+          <div class="note">Telefonisch erreichen Sie mich <strong>Montag bis Freitag von 8 bis 18 Uhr</strong>. Ich antworte jedem Kunden – auf Nachrichten und E-Mails in der Regel <strong>im Laufe der Woche</strong>. Am Wochenende bin ich nicht erreichbar.</div>
           <p class="muted">Elektro Slater · Rondehl Slater<br>Nymphenburger Straße 46, 80335 München</p>
         </div>
         <form class="form reveal" id="anfrage-form" novalidate>
@@ -472,7 +473,7 @@
           <label>Nachricht *<textarea name="nachricht" required placeholder="Was soll gemacht werden? Wo? Bis wann?"></textarea></label>
           <label class="check"><input type="checkbox" required> <span>Ich bin einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage verwendet werden. Mehr in der <a href="datenschutz.html">Datenschutzerklärung</a>. *</span></label>
           <button class="btn btn--volt" type="submit"><svg><use href="#i-mail"/></svg>Absenden</button>
-          <small>Beim Absenden öffnet sich Ihr E-Mail-Programm mit der vorbereiteten Nachricht.</small>
+          <small>Beim Absenden öffnet sich Ihr E-Mail-Programm mit der vorbereiteten Nachricht. Ich melde mich im Laufe der Woche bei Ihnen.</small>
         </form>
       </div>
     </div>
@@ -483,7 +484,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <a href="#top" aria-label="nach oben"><img src="img/logo-slater.png" alt="Slater" width="100" height="26"></a>
-    <span>© <span data-year>2026</span> Elektro Slater · Rondehl Slater · München</span>
+    <span>© <span data-year>2026</span> Elektro Slater · Rondehl Slater · München · Mo–Fr 8–18 Uhr</span>
     <ul>
       <li><a href="impressum.html">Impressum</a></li>
       <li><a href="datenschutz.html">Datenschutz</a></li>
@@ -493,7 +494,7 @@
   </div>
 </footer>
 
-<script src="js/storm.js?v=3" defer></script>
-<script src="js/main.js?v=3" defer></script>
+<script src="js/storm.js?v=4" defer></script>
+<script src="js/main.js?v=4" defer></script>
 </body>
 </html>

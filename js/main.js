@@ -39,77 +39,97 @@
     items.forEach(function (el) { el.classList.add('is-in'); });
   }
 
-  // Bildershow: ein Bild nach dem anderen, mit dunklem Blitz und Flackern beim Wechsel
-  var reel = document.querySelector('[data-reel]');
-  if (reel) {
-    var shots = Array.prototype.slice.call(reel.querySelectorAll('.reel-shot'));
-    var bg = reel.querySelector('.reel-bg');
-    var flashEl = reel.querySelector('.reel-flash');
-    var bar = reel.querySelector('.reel-progress i');
-    var bc = reel.querySelector('.reel-bolt'), bctx = bc.getContext('2d');
-    var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var cur = -1, timer = null, onScreen = false, HOLD = 4600;
-
-    function sizeBolt() {
-      var r = reel.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2);
-      bc.width = r.width * d; bc.height = r.height * d;
-      bctx.setTransform(d, 0, 0, d, 0, 0);
+  // Bilder: immer vier sichtbar, sie wandern im Uhrzeigersinn weiter (oben links → oben rechts → unten rechts → unten links)
+  var ring = document.querySelector('[data-ring]');
+  if (ring) {
+    var cards = Array.prototype.slice.call(ring.querySelectorAll('.ring-card'));
+    var SLOTS = [[0, 0], [51, 0], [51, 51.5], [0, 51.5]];
+    var ENTER = [-8, -12], EXIT = [-14, 64];
+    var shown = [], nextIdx = 0, ringTimer = null;
+    function place(el, pos, on) {
+      el.style.left = pos[0] + '%'; el.style.top = pos[1] + '%';
+      el.classList.toggle('is-on', on);
     }
-    function boltPath(w, h) {
-      var x = w * (0.25 + Math.random() * 0.5), pts = [[x, -10]], y = -10;
-      while (y < h + 10) { y += 14 + Math.random() * 26; x += (Math.random() - 0.5) * 60; pts.push([x, y]); }
+    function jump(el, pos) { // ohne Animation an eine Stelle setzen
+      el.style.transition = 'none'; place(el, pos, false); void el.offsetWidth; el.style.transition = '';
+    }
+    cards.forEach(function (c) { jump(c, ENTER); });
+    for (var k = 0; k < 4 && k < cards.length; k++) { shown.push(cards[k]); place(cards[k], SLOTS[k], true); cards[k].loading = 'eager'; }
+    nextIdx = shown.length % cards.length;
+    function turn() {
+      if (cards.length <= 4) return;
+      var leaving = shown.pop();
+      place(leaving, EXIT, false);
+      setTimeout(function () { if (shown.indexOf(leaving) < 0) jump(leaving, ENTER); }, 1200);
+      var incoming = cards[nextIdx]; nextIdx = (nextIdx + 1) % cards.length;
+      while (shown.indexOf(incoming) >= 0) { incoming = cards[nextIdx]; nextIdx = (nextIdx + 1) % cards.length; }
+      jump(incoming, ENTER);
+      shown.unshift(incoming);
+      requestAnimationFrame(function () { shown.forEach(function (c, i) { place(c, SLOTS[i], true); }); });
+      var pre = cards[nextIdx]; if (pre.loading === 'lazy') pre.loading = 'eager';
+    }
+    function ringPlay() { ringStop(); ringTimer = setInterval(turn, 3400); }
+    function ringStop() { if (ringTimer) clearInterval(ringTimer); ringTimer = null; }
+    ring.addEventListener('click', turn);
+
+    // Blitze an den Seiten, von oben links nach unten
+    var sec = ring.closest('section'), bcv = sec.querySelector('.ring-bolts'), bx = bcv.getContext('2d');
+    var calmBolts = window.matchMedia('(prefers-reduced-motion: reduce)').matches, boltTimer = null;
+    function sizeB() {
+      var d = Math.min(window.devicePixelRatio || 1, 2), r = sec.getBoundingClientRect();
+      bcv.width = r.width * d; bcv.height = r.height * d; bx.setTransform(d, 0, 0, d, 0, 0);
+    }
+    function path(x0, y0, x1, y1, rough) {
+      var pts = [[x0, y0], [x1, y1]];
+      for (var n = 0; n < 6; n++) {
+        var np = [pts[0]];
+        for (var i = 0; i < pts.length - 1; i++) {
+          var p = pts[i], q = pts[i + 1];
+          np.push([(p[0] + q[0]) / 2 + (Math.random() - .5) * rough, (p[1] + q[1]) / 2 + (Math.random() - .5) * rough * .3], q);
+        }
+        pts = np; rough *= .55;
+      }
       return pts;
     }
-    function drawBolt(pts, a) {
-      var r = reel.getBoundingClientRect();
-      bctx.clearRect(0, 0, r.width, r.height);
-      if (a <= 0) return;
-      bctx.lineJoin = 'round'; bctx.lineCap = 'round';
-      bctx.beginPath(); bctx.moveTo(pts[0][0], pts[0][1]);
-      for (var i = 1; i < pts.length; i++) bctx.lineTo(pts[i][0], pts[i][1]);
-      bctx.globalAlpha = a;
-      bctx.shadowColor = 'rgba(143,194,255,.95)'; bctx.shadowBlur = 28;
-      bctx.strokeStyle = 'rgba(120,170,255,.55)'; bctx.lineWidth = 9; bctx.stroke(); // Glühen
-      bctx.shadowBlur = 0;
-      bctx.strokeStyle = '#000'; bctx.lineWidth = 4; bctx.stroke();                 // schwarzer Kern
-      bctx.globalAlpha = 1;
+    function stroke(pts, w, a) {
+      bx.beginPath(); bx.moveTo(pts[0][0], pts[0][1]);
+      for (var i = 1; i < pts.length; i++) bx.lineTo(pts[i][0], pts[i][1]);
+      bx.globalAlpha = a;
+      bx.shadowColor = 'rgba(143,194,255,1)'; bx.shadowBlur = 24;
+      bx.strokeStyle = 'rgba(150,195,255,.6)'; bx.lineWidth = w * 3; bx.stroke();
+      bx.shadowBlur = 0; bx.strokeStyle = '#fff'; bx.lineWidth = w; bx.stroke();
+      bx.globalAlpha = 1;
     }
-    function strike() {
-      if (calm) return;
-      var r = reel.getBoundingClientRect(), pts = boltPath(r.width, r.height);
-      [[0, 1], [70, 0], [120, .9], [200, .2], [260, .75], [520, 0]].forEach(function (s) {
-        setTimeout(function () { drawBolt(pts, s[1]); }, s[0]);
+    function sideBolt() {
+      var r = sec.getBoundingClientRect(), w = r.width, h = r.height;
+      var right = Math.random() < 0.35, band = Math.max(w * 0.12, 70);
+      var x0 = right ? w - band * 0.9 : band * 0.1 + Math.random() * band * 0.3;
+      var x1 = right ? w - band * 0.15 : band * (0.5 + Math.random() * 0.5);
+      var main = path(x0, -10, x1, h * (0.55 + Math.random() * 0.45), w * 0.06);
+      var branches = [];
+      for (var i = 6; i < main.length - 6; i += 9) if (Math.random() < .4) {
+        var p = main[i]; branches.push(path(p[0], p[1], p[0] + (Math.random() - .3) * 90, p[1] + 40 + Math.random() * 90, 30));
+      }
+      [[0, 1], [60, 0], [110, .85], [190, .25], [240, .7], [480, 0]].forEach(function (s) {
+        setTimeout(function () {
+          bx.clearRect(0, 0, w, h);
+          if (!s[1]) return;
+          stroke(main, 1.6, s[1]);
+          branches.forEach(function (b) { stroke(b, .8, s[1] * .7); });
+        }, s[0]);
       });
-      flashEl.classList.remove('is-on'); void flashEl.offsetWidth; flashEl.classList.add('is-on');
     }
-    function show(n) {
-      var prev = shots[cur];
-      cur = (n + shots.length) % shots.length;
-      var next = shots[cur];
-      if (prev) { prev.classList.remove('is-in'); prev.classList.add('is-out'); setTimeout(function () { prev.classList.remove('is-out'); }, 1000); }
-      strike();
-      setTimeout(function () {
-        next.classList.add('is-in');
-        bg.style.backgroundImage = 'url("' + next.getAttribute('src') + '")';
-      }, calm ? 0 : 160);
-      var after = shots[(cur + 1) % shots.length]; if (after.loading === 'lazy') after.loading = 'eager';
-      bar.style.transition = 'none'; bar.style.width = '0';
-      void bar.offsetWidth;
-      bar.style.transition = 'width ' + HOLD + 'ms linear'; bar.style.width = '100%';
-    }
-    function play() { stop(); timer = setInterval(function () { show(cur + 1); }, HOLD); }
-    function stop() { if (timer) clearInterval(timer); timer = null; }
-    reel.addEventListener('click', function () { show(cur + 1); if (onScreen) play(); });
-    sizeBolt(); window.addEventListener('resize', sizeBolt);
-    shots[0].loading = 'eager';
-    show(0);
+    function boltLoop() { boltTimer = setTimeout(function () { sideBolt(); boltLoop(); }, 1800 + Math.random() * 3200); }
+    function boltStop() { if (boltTimer) clearTimeout(boltTimer); boltTimer = null; }
+    sizeB(); window.addEventListener('resize', sizeB);
+
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (e) {
-        onScreen = e[0].isIntersecting;
-        if (onScreen && !document.hidden) play(); else stop();
-      }, { threshold: 0.25 }).observe(reel);
-      document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else if (onScreen) play(); });
-    } else play();
+        var vis = e[0].isIntersecting && !document.hidden;
+        if (vis) { ringPlay(); if (!calmBolts && !boltTimer) { sideBolt(); boltLoop(); } }
+        else { ringStop(); boltStop(); }
+      }, { threshold: 0.2 }).observe(sec);
+    } else ringPlay();
   }
 
   // Kontaktformular: öffnet das E-Mail-Programm mit vorbereiteter Nachricht

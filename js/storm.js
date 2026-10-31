@@ -139,7 +139,7 @@
       if (!ac) return;
       master.gain.cancelScheduledValues(ac.currentTime);
       master.gain.setValueAtTime(master.gain.value, ac.currentTime);
-      master.gain.linearRampToValueAtTime(seen ? level : 0, ac.currentTime + 1.2);
+      master.gain.linearRampToValueAtTime(seen ? level : 0, ac.currentTime + (seen ? 1.2 : 0.5));
     }
     function set(mode) {
       if (!ac && !init()) return false;
@@ -210,9 +210,15 @@
     new IntersectionObserver(function (e) { visible = e[0].isIntersecting; setRunning(); }).observe(hero);
   }
   document.addEventListener('visibilitychange', setRunning);
+  // Ton nur ganz oben: sobald man losscrollt, verstummt das Gewitter – oben setzt es wieder ein
+  var atTop = true;
+  window.addEventListener('scroll', function () {
+    var t = window.scrollY < 60;
+    if (t !== atTop) { atTop = t; Sound.setVisible(atTop && !document.hidden); }
+  }, { passive: true });
   function setRunning() {
     var should = visible && !document.hidden;
-    Sound.setVisible(should);
+    Sound.setVisible(should && atTop);
     if (should && !running) { running = true; last = 0; requestAnimationFrame(frame); }
     else if (!should) running = false;
   }
