@@ -528,3 +528,27 @@ p { margin: 0 0 1em; }
 }
 .net-badges span:first-child { color: #9fd0ff; }
 .net-badges span:last-child { color: #ffd23c; }
+
+/* Werdegang: Zeitleiste, an der der Strom entlangläuft */
+.timeline { list-style: none; margin: 0; padding: 0 0 0 4px; position: relative; max-width: 860px; }
+.timeline::before { content: ""; position: absolute; left: 76px; top: 8px; bottom: 8px; width: 2px; background: rgba(255, 255, 255, .1); }
+.timeline::after { /* Stromimpuls */
+  content: ""; position: absolute; left: 75px; top: 0; width: 4px; height: 90px; border-radius: 4px;
+  background: linear-gradient(180deg, transparent, var(--spark), #fff, transparent);
+  box-shadow: 0 0 14px var(--spark); animation: tl-pulse 4.5s linear infinite;
+}
+@keyframes tl-pulse { 0% { top: 0; opacity: 0; } 8% { opacity: 1; } 92% { opacity: 1; } 100% { top: calc(100% - 90px); opacity: 0; } }
+.timeline li { display: grid; grid-template-columns: 64px 1fr; gap: 36px; padding: 0 0 38px; position: relative; }
+.timeline li::before { content: ""; position: absolute; left: 70px; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg); border: 2px solid var(--volt); box-shadow: 0 0 10px rgba(255, 210, 60, .5); }
+.tl-year { font-weight: 800; color: var(--volt); font-size: 15px; text-align: right; padding-top: 2px; white-space: nowrap; }
+.timeline h3 { margin: 0 0 6px; font-size: 20px; }
+.timeline p { margin: 0; color: var(--muted); }
+.tl-now::before { background: var(--volt) !important; animation: now 1.6s ease-in-out infinite; }
+@keyframes now { 50% { box-shadow: 0 0 22px rgba(255, 210, 60, .9); } }
+@media (max-width: 600px) {
+  .timeline::before { left: 7px; } .timeline::after { left: 6px; }
+  .timeline li { grid-template-columns: 1fr; gap: 4px; padding-left: 32px; }
+  .timeline li::before { left: 1px; }
+  .tl-year { text-align: left; }
+}
+@media (prefers-reduced-motion: reduce) { .timeline::after, .tl-now::before { animation: none; } }
