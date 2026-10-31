@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#07090c">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2307090c'/%3E%3Cpath d='M36 6 14 36h14l-4 22 24-32H34z' fill='%23ffd23c'/%3E%3C/svg%3E">
   <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=7">
+  <link rel="stylesheet" href="css/style.css?v=8">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -51,12 +51,10 @@
     <button class="nav-toggle" aria-expanded="false" aria-controls="nav" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
     <nav class="nav" id="nav" aria-label="Hauptnavigation">
       <ul>
-        <li><a href="#ueber-mich">Über mich</a></li>
-        <li><a href="#werdegang">Werdegang</a></li>
-        <li><a href="#nachweise">Nachweise</a></li>
-        <li><a href="#leistungen">Service</a></li>
-        <li><a href="#arbeitsweise">Arbeitsweise</a></li>
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#arbeitsweise">So arbeite ich</a></li>
         <li><a href="#bilder">Bilder</a></li>
+        <li><a href="#ueber-mich">Über mich</a></li>
         <li><a class="btn btn--volt" href="#kontakt">Kontakt</a></li>
       </ul>
     </nav>
@@ -76,7 +74,15 @@
   <div class="wrap">
     <div class="hero-content">
       <h1 class="hero-logo"><img src="img/logo-slater.png" alt="Elektro Slater München" width="620" height="161"></h1>
-      <p class="hero-sub">Elektro Slater München: Ihr Experte für Elektroarbeiten in Wohnung, Umbau und Büro.</p>
+      <p class="hero-sub">Ihr Elektriker in München – für kleine Aufträge genauso wie für die ganze Wohnung.</p>
+      <ul class="hero-chips" aria-label="Leistungen">
+        <li><a href="#leistungen">Steckdosen</a></li>
+        <li><a href="#leistungen">Lampen</a></li>
+        <li><a href="#leistungen">Fehlersuche</a></li>
+        <li><a href="#leistungen">Elektroprüfung</a></li>
+        <li><a href="#leistungen">Sanierung</a></li>
+        <li><a href="#leistungen">Wallbox</a></li>
+      </ul>
       <div class="hero-actions">
         <a class="btn btn--volt" href="tel:+4915567148947"><svg><use href="#i-phone"/></svg>+49 155 67148947</a>
         <a class="btn btn--ghost" href="#kontakt">Unverbindlich anfragen</a>
@@ -85,10 +91,188 @@
     </div>
   </div>
   <button class="sound-btn" type="button" data-sound aria-pressed="false"><svg aria-hidden="true"><use href="#i-sound"/></svg><span>Ton aus</span></button>
-  <a class="scroll-cue" href="#ueber-mich" aria-label="Weiter nach unten"></a>
+  <a class="scroll-cue" href="#leistungen" aria-label="Weiter nach unten"></a>
 </section>
 
 <main id="main">
+
+
+  <!-- Leistungen -->
+  <section class="section" id="leistungen">
+    <img class="side-shot side-shot--right" src="img/kurzschluss.jpg" alt="" aria-hidden="true" loading="lazy" data-flicker="spark">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">Leistungen</span>
+        <h2>Was ich für Sie mache</h2>
+        <p class="lead">Ich kann alles, was ein Elektrobetrieb kann – vom kleinen Handgriff bis zur Elektrik eines ganzen Hauses. Besonders gern übernehme ich die kleinen Aufträge, für die andere Firmen keine Zeit haben.</p>
+      </div>
+
+      <article class="feature reveal">
+        <div class="fade-photo fade-photo--soft"><img src="img/werkzeug.jpg" alt="Werkzeugkiste mit isoliertem Elektriker-Werkzeug" loading="lazy"></div>
+        <div>
+          <span class="tag">Kleinaufträge</span>
+          <h3>Kleine Aufträge? Gern – genau dafür bin ich da.</h3>
+          <p class="muted">Viele Betriebe winken bei kleinen Arbeiten ab. Ich nicht. Ein Anruf genügt.</p>
+          <ul>
+            <li>Steckdosen versetzen oder zusätzlich setzen</li>
+            <li>Lampen, Leuchten und Außenbeleuchtung montieren</li>
+            <li>Schalter, Dimmer und Bewegungsmelder tauschen</li>
+            <li>Fehlersuche, wenn die Sicherung immer wieder fliegt</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feature reveal">
+        <div class="fade-photo fade-photo--soft"><img src="img/sanierung-1.jpg" alt="Elektrosanierung in einer Wohnung während der Renovierung" loading="lazy"></div>
+        <div>
+          <span class="tag">Umbau, Sanierung, Haus</span>
+          <h3>Elektroinstallation bei Umbauten – bis zum ganzen Haus</h3>
+          <p class="muted">Anpassung und Modernisierung bestehender Elektroinstallationen bei Renovierungen oder Erweiterungen – bis hin zur kompletten Elektrik Ihrer Wohnung oder Ihres Hauses. Ich plane in Ruhe mit Ihnen und arbeite sauber.</p>
+          <ul>
+            <li>Neue Leitungen, Steckdosen, Schalter und Auslässe</li>
+            <li>Unterverteilung / Sicherungskasten erneuern, FI nachrüsten</li>
+            <li>Herd-, Durchlauferhitzer- und Starkstromanschlüsse</li>
+            <li>Abstimmung mit Maler, Trockenbau und Vermieter</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feature reveal">
+        <div class="fade-photo fade-photo--soft"><img src="img/pruefgeraet.jpg" alt="Prüfgerät bei einer elektrischen Sicherheitsprüfung" loading="lazy"></div>
+        <div>
+          <span class="tag">Sicherheit</span>
+          <h3>Elektroprüfung – Ihre Anlage sicher geprüft</h3>
+          <p class="muted">Ob Mietwohnung, Eigentum oder kleines Büro: Ich prüfe Ihre Elektroinstallation und Geräte und dokumentiere das Ergebnis in einem Prüfprotokoll. Ideal für Vermieter, beim Ein- oder Auszug, nach dem Kauf einer Wohnung oder wenn die letzte Prüfung lange her ist.</p>
+          <ul>
+            <li>Sichtprüfung von Leitungen, Steckdosen und Verteiler</li>
+            <li>Messung von Schutzleiter und Isolationswiderstand</li>
+            <li>Test der FI-Schutzschalter und Sicherungen</li>
+            <li>Prüfprotokoll mit klaren Empfehlungen</li>
+          </ul>
+        </div>
+      </article>
+
+      <div class="cards">
+        <div class="card reveal">
+          <svg><use href="#i-office"/></svg>
+          <h3>Elektroinstallation für Büros und Geschäfte</h3>
+          <p>Planung und Installation der elektrischen Anlagen für Ihr Büro oder Geschäft.</p>
+        </div>
+        <div class="card reveal">
+          <svg><use href="#i-shield"/></svg>
+          <h3>Sicherheits- und Alarmanlagen</h3>
+          <p>Installation von Sicherheits- und Alarmanlagen zum Schutz von Haus und Eigentum.</p>
+        </div>
+        <div class="card reveal">
+          <svg><use href="#i-net"/></svg>
+          <h3>Netzwerk &amp; Datenleitungen</h3>
+          <p>Netzwerkschränke, Patchfelder und LAN-Dosen – sauber verlegt und beschriftet.</p>
+        </div>
+        <div class="card reveal">
+          <svg><use href="#i-chip"/></svg>
+          <h3>Fehlersuche – meine Spezialität</h3>
+          <p>Elf Jahre Instandhaltung in der Industrie: Ich finde Fehler, wo andere aufgeben – in Verteilern, Steuerungen, Geräten und Verkabelung.</p>
+        </div>
+        <div class="card reveal">
+          <svg><use href="#i-bolt"/></svg>
+          <h3>Wallbox &amp; Batteriespeicher</h3>
+          <p>Ladestation fürs E-Auto oder Speicher für die PV-Anlage – mit Hochvolt-Wissen aus der Automobilindustrie, sicher abgesichert.</p>
+        </div>
+        <div class="card reveal">
+          <svg><use href="#i-plug"/></svg>
+          <h3>Starkstrom &amp; Geräteanschluss</h3>
+          <p>CEE-Anschlüsse, Großgeräte und Küchengeräte fachgerecht anschließen.</p>
+        </div>
+        <div class="card reveal">
+          <svg><use href="#i-lamp"/></svg>
+          <h3>Licht innen &amp; außen</h3>
+          <p>Leuchten, Außenlampen und Bewegungsmelder – damit es überall hell und sicher ist.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Arbeitsweise: ehrlich als Ein-Mann-Betrieb -->
+  <section class="section" id="arbeitsweise">
+    <img class="side-shot side-shot--left" src="img/trafo.jpg" alt="" aria-hidden="true" loading="lazy" data-flicker="hum">
+    <div class="wrap honest">
+      <div class="honest-photo fade-photo reveal">
+        <img src="img/portrait-2.jpg" alt="Rondehl Slater mit Werkzeugkoffer vor einem Wohnhaus in München" loading="lazy">
+      </div>
+      <div class="reveal">
+        <span class="kicker">So arbeite ich – ehrlich gesagt</span>
+        <h2>Ein Mann. Volle Verantwortung. Etwas mehr Zeit.</h2>
+        <p class="lead">Elektro Slater ist ein junger Ein-Mann-Betrieb. Ich starte gerade durch – derzeit nebenberuflich – und will mich hier in München als Ihr fester Elektriker etablieren.</p>
+        <p class="muted">Fachlich kann ich alles, was ein Elektrobetrieb kann. Der Unterschied: Wo eine Firma mit zwei, drei Monteuren ein Haus in einer Woche fertig macht, arbeite ich allein. Deshalb schaue ich mir jedes Projekt vor Ort an und sage Ihnen ehrlich, wie lange ich ungefähr brauche. Es dauert dann meistens etwas länger – dafür ist der, der anfängt, auch der, der fertig macht. Zuverlässig, sauber und mit klarer Absprache.</p>
+        <ol class="steps">
+          <li><strong>Anruf oder Nachricht</strong><span>Sie schildern kurz, was Sie brauchen – gern mit Foto.</span></li>
+          <li><strong>Besichtigung vor Ort</strong><span>Ich schaue mir alles an und sage Ihnen ehrlich, wie lange es ungefähr dauert.</span></li>
+          <li><strong>Klares Angebot</strong><span>Sie wissen vorher, womit Sie rechnen können – bei Preis und Zeit.</span></li>
+          <li><strong>Saubere Ausführung</strong><span>Zuverlässig, ordentlich und nach DIN VDE.</span></li>
+          <li><strong>Prüfung &amp; Übergabe</strong><span>Messung, Erklärung und auf Wunsch Prüfprotokoll.</span></li>
+        </ol>
+        <p class="hours-line"><svg aria-hidden="true"><use href="#i-clock"/></svg>Erreichbar Montag bis Freitag, 8–18 Uhr · Antwort im Laufe der Woche</p>
+        <div class="note">Tipp: Die Arbeitskosten für Handwerkerleistungen in Ihrem Haushalt können Sie in der Regel steuerlich geltend machen. Ich weise sie auf der Rechnung gesondert aus.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kapitel 1 -->
+  <section class="chapter chapter--right" aria-labelledby="k1">
+    <div class="chapter-media"><img src="img/blitz.jpg" alt="Blitz aus einer Gewitterwolke" loading="lazy" data-flicker="storm"></div>
+    <svg class="kite" viewBox="0 0 120 220" aria-hidden="true"><path d="M60 4 98 52 60 120 22 52Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M60 4V120M22 52h76" stroke="currentColor" stroke-width="1.2"/><path d="M60 120c-14 22 16 36 2 58s12 30 4 40" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 4"/><path d="M70 214h12M76 208v12" stroke="#ffd23c" stroke-width="3"/></svg>
+    <div class="wrap">
+      <div class="chapter-text reveal">
+        <span class="chapter-year" aria-hidden="true">1752</span>
+        <span class="kicker">Meilensteine der Elektrik · 1 / 6</span>
+        <h2 id="k1">Benjamin Franklin holt den Blitz vom Himmel</h2>
+        <p>Der Überlieferung nach lässt Benjamin Franklin im Sommer 1752 bei Gewitter einen Drachen steigen – mit einem Metallschlüssel an der nassen Schnur. Als Funken überspringen, ist klar: Blitze sind Elektrizität.</p>
+        <p class="muted">Daraus entsteht seine bekannteste Erfindung, der Blitzableiter. Er schützt bis heute Häuser, Kirchtürme und Trafostationen auf der ganzen Welt.</p>
+        <button class="chapter-sound" type="button" data-chapter-sound="franklin" aria-pressed="false"><svg aria-hidden="true"><use href="#i-sound"/></svg><span>Anhören</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bilder -->
+  <section class="section ring-section" id="bilder" aria-label="Bilder aus meiner Arbeit">
+    <canvas class="ring-bolts" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="ring" data-ring>
+        <img class="ring-card" src="img/unterverteilung.jpg" alt="Neu verdrahtete Unterverteilung" loading="lazy" decoding="async">
+        <img class="ring-card" src="img/treppenhaus-verteiler.jpg" alt="Arbeit am Verteiler im Treppenhaus" loading="lazy" decoding="async">
+        <img class="ring-card" src="img/netzwerkschrank.jpg" alt="Netzwerkschrank mit Patchkabeln" loading="lazy" decoding="async">
+        <img class="ring-card" src="img/sanierung-2.jpg" alt="Wohnung während der Elektrosanierung" loading="lazy" decoding="async">
+        <img class="ring-card" src="img/verteiler.jpg" alt="Unterverteilung mit Leitungsschutzschaltern und Steckdosen" loading="lazy" decoding="async">
+        <img class="ring-card" src="img/platinen.jpg" alt="Geöffnetes Gerät mit Steuerplatinen" loading="lazy" decoding="async">
+        <img class="ring-card" src="img/aussenleuchte.jpg" alt="Montage einer Außenleuchte an der Hauswand" loading="lazy" decoding="async">
+        <img class="ring-card" src="img/messgeraet.jpg" alt="Installationstester im Einsatz" loading="lazy" decoding="async">
+        <img class="ring-card" src="img/kabeltrasse.jpg" alt="Kabeltrasse mit Leitungen" loading="lazy" decoding="async">
+        <img class="ring-card" src="img/gewerbe.jpg" alt="Großküchengerät mit CEE-Steckern" loading="lazy" decoding="async">
+        <img class="ring-card" src="img/modulsimulator.jpg" alt="Platine mit orangefarbener Verdrahtung" loading="lazy" decoding="async">
+        <img class="ring-card" src="img/sanierung-1.jpg" alt="Leitungen setzen in der Wohnung" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </section>
+
+  <!-- Kapitel 2 -->
+  <section class="chapter chapter--left" aria-labelledby="k2">
+    <div class="chapter-media chapter-media--dark"><img src="img/funken.jpg" alt="" aria-hidden="true" loading="lazy" data-flicker="glow"></div>
+    <svg class="volta" viewBox="0 0 160 300" aria-hidden="true">
+      <defs><linearGradient id="cu" x1="0" x2="1"><stop offset="0" stop-color="#7a3d1c"/><stop offset=".5" stop-color="#e08a4f"/><stop offset="1" stop-color="#7a3d1c"/></linearGradient><linearGradient id="zn" x1="0" x2="1"><stop offset="0" stop-color="#555b63"/><stop offset=".5" stop-color="#c9d0d8"/><stop offset="1" stop-color="#555b63"/></linearGradient></defs>
+      <g class="volta-stack"></g>
+      <path class="volta-wire" d="M120 40 C160 40 160 260 120 260" fill="none" stroke="#ffd23c" stroke-width="2"/>
+    </svg>
+    <div class="wrap">
+      <div class="chapter-text reveal">
+        <span class="chapter-year" aria-hidden="true">1800</span>
+        <span class="kicker">Meilensteine der Elektrik · 2 / 6</span>
+        <h2 id="k2">Alessandro Volta baut die erste Batterie</h2>
+        <p>Volta stapelt Kupfer- und Zinkscheiben, getrennt durch salzwassergetränkte Pappe – die Voltasche Säule. Zum ersten Mal fließt Strom gleichmäßig und dauerhaft, statt nur als kurzer Funke.</p>
+        <p class="muted">Nach ihm ist die Einheit benannt, die heute auf jeder Steckdose steht: das Volt.</p>
+        <button class="chapter-sound" type="button" data-chapter-sound="volta" aria-pressed="false"><svg aria-hidden="true"><use href="#i-sound"/></svg><span>Anhören</span></button>
+      </div>
+    </div>
+  </section>
 
   <!-- Über mich: das Foto läuft weich aus dem Gewitter heraus -->
   <section class="about" id="ueber-mich">
@@ -100,12 +284,6 @@
       <h2>Von der Industrie bis zur Steckdose – 35 Jahre unter Strom.</h2>
       <p class="lead">Ich bin Rondehl Slater. Seit 1991 arbeite ich mit Strom – von riesigen Industrieanlagen bis heute zu Hochvolt-Batteriespeichern. Dieses Wissen bringe ich mit zu Ihnen nach Hause.</p>
       <p class="muted">Als selbstständiger Elektrotechniker arbeite ich direkt aus München, flexibel und pünktlich vor Ort. Bei mir erhalten Sie faire Preise und eine persönliche Betreuung: Wer anruft, spricht mit dem, der die Arbeit auch macht.</p>
-      <ul class="creds">
-        <li><svg><use href="#i-check"/></svg>Staatlich geprüfter Elektrotechniker (Urkunde)</li>
-        <li><svg><use href="#i-check"/></svg>Eingetragen in der Handwerksrolle der Handwerkskammer für München und Oberbayern</li>
-        <li><svg><use href="#i-check"/></svg>Im Installateurverzeichnis der Bayernwerk Netz und der SWM (Stadtwerke München)</li>
-        <li><svg><use href="#i-check"/></svg>Sachkundenachweis TREI – Anschluss an das Niederspannungsnetz</li>
-      </ul>
       <div class="stats">
         <div><strong>35</strong><span>Jahre Berufserfahrung</span></div>
         <div><strong>1</strong><span>fester Ansprechpartner</span></div>
@@ -114,6 +292,21 @@
     </div>
   </section>
 
+  <!-- Kapitel 3 -->
+  <section class="chapter chapter--right" aria-labelledby="k3">
+    <div class="chapter-media"><img src="img/kupferspule.jpg" alt="Kupferspule" loading="lazy" data-flicker="glow"></div>
+    <div class="field" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <div class="wrap">
+      <div class="chapter-text reveal">
+        <span class="chapter-year" aria-hidden="true">1831</span>
+        <span class="kicker">Meilensteine der Elektrik · 3 / 6</span>
+        <h2 id="k3">Michael Faraday entdeckt die Induktion</h2>
+        <p>Faraday bewegt einen Magneten durch eine Drahtspule – und in der Spule fließt Strom. Bewegung wird zu Elektrizität.</p>
+        <p class="muted">Die elektromagnetische Induktion steckt in jedem Generator, jedem Elektromotor und jedem Transformator. Ohne sie gäbe es kein Kraftwerk – und kein Trafohäuschen an der Straßenecke.</p>
+        <button class="chapter-sound" type="button" data-chapter-sound="faraday" aria-pressed="false"><svg aria-hidden="true"><use href="#i-sound"/></svg><span>Anhören</span></button>
+      </div>
+    </div>
+  </section>
 
   <!-- Werdegang: 35 Jahre unter Strom -->
   <section class="section career" id="werdegang">
@@ -131,6 +324,21 @@
         <li class="reveal"><span class="tl-year">2024</span><div><h3>Elektro Slater</h3><p>Eintrag in die Handwerksrolle, TREI-Sachkundenachweis, Installateurverzeichnis bei Bayernwerk und SWM – mein eigener Elektrobetrieb in München.</p></div></li>
         <li class="reveal tl-now"><span class="tl-year">heute</span><div><h3>Spezialist für Hochvoltspeicher</h3><p>Hauptberuflich analysiere ich im Labor Schäden an Hochvolt-Batteriespeichern von Elektrofahrzeugen – nebenberuflich bin ich für Sie da.</p></div></li>
       </ol>
+    </div>
+  </section>
+
+  <!-- Kapitel 4 -->
+  <section class="chapter chapter--left chapter--bulb" aria-labelledby="k4">
+    <div class="chapter-media chapter-media--dark"><img src="img/gluehbirne.jpg" alt="Glühbirne, die im Dunkeln flackert" loading="lazy" data-flicker="bulb"></div>
+    <div class="wrap">
+      <div class="chapter-text reveal">
+        <span class="chapter-year" aria-hidden="true">1879</span>
+        <span class="kicker">Meilensteine der Elektrik · 4 / 6</span>
+        <h2 id="k4">Thomas Edison: Licht auf Knopfdruck</h2>
+        <p>Edison bringt eine Glühlampe mit Kohlefaden zum Leuchten, die lange genug hält, um alltagstauglich zu sein. Fast zeitgleich forscht Joseph Swan in England an derselben Idee.</p>
+        <p class="muted">Mit der Glühbirne beginnt die Elektrifizierung der Haushalte – und damit der Beruf, den ich heute ausübe.</p>
+        <button class="chapter-sound" type="button" data-chapter-sound="edison" aria-pressed="false"><svg aria-hidden="true"><use href="#i-sound"/></svg><span>Anhören</span></button>
+      </div>
     </div>
   </section>
 
@@ -186,213 +394,6 @@
           <h3>Prüfprotokoll</h3>
           <p>Nach jeder Installation oder Prüfung erhalten Sie auf Wunsch ein Messprotokoll nach DIN VDE – erstellt mit dem kalibrierten Messgerät.</p>
         </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Kapitel 1 -->
-  <section class="chapter chapter--right" aria-labelledby="k1">
-    <div class="chapter-media"><img src="img/blitz.jpg" alt="Blitz aus einer Gewitterwolke" loading="lazy" data-flicker="storm"></div>
-    <svg class="kite" viewBox="0 0 120 220" aria-hidden="true"><path d="M60 4 98 52 60 120 22 52Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M60 4V120M22 52h76" stroke="currentColor" stroke-width="1.2"/><path d="M60 120c-14 22 16 36 2 58s12 30 4 40" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 4"/><path d="M70 214h12M76 208v12" stroke="#ffd23c" stroke-width="3"/></svg>
-    <div class="wrap">
-      <div class="chapter-text reveal">
-        <span class="chapter-year" aria-hidden="true">1752</span>
-        <span class="kicker">Meilensteine der Elektrik · 1 / 6</span>
-        <h2 id="k1">Benjamin Franklin holt den Blitz vom Himmel</h2>
-        <p>Der Überlieferung nach lässt Benjamin Franklin im Sommer 1752 bei Gewitter einen Drachen steigen – mit einem Metallschlüssel an der nassen Schnur. Als Funken überspringen, ist klar: Blitze sind Elektrizität.</p>
-        <p class="muted">Daraus entsteht seine bekannteste Erfindung, der Blitzableiter. Er schützt bis heute Häuser, Kirchtürme und Trafostationen auf der ganzen Welt.</p>
-        <button class="chapter-sound" type="button" data-chapter-sound="franklin" aria-pressed="false"><svg aria-hidden="true"><use href="#i-sound"/></svg><span>Anhören</span></button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Leistungen -->
-  <section class="section" id="leistungen">
-    <img class="side-shot side-shot--right" src="img/kurzschluss.jpg" alt="" aria-hidden="true" loading="lazy" data-flicker="spark">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="kicker">Service</span>
-        <h2>Unsere Elektroinstallations-Dienstleistungen in München</h2>
-        <p class="lead">Ich kann alles, was ein Elektrobetrieb kann – vom kleinen Handgriff bis zur Elektrik eines ganzen Hauses.</p>
-      </div>
-
-      <article class="feature reveal">
-        <div class="fade-photo fade-photo--soft"><img src="img/pruefgeraet.jpg" alt="Prüfgerät bei einer elektrischen Sicherheitsprüfung" loading="lazy"></div>
-        <div>
-          <span class="tag">Sicherheit</span>
-          <h3>Elektroprüfung – Ihre Anlage sicher geprüft</h3>
-          <p class="muted">Ob Mietwohnung, Eigentum oder kleines Büro: Ich prüfe Ihre Elektroinstallation und Geräte und dokumentiere das Ergebnis in einem Prüfprotokoll. Ideal für Vermieter, beim Ein- oder Auszug, nach dem Kauf einer Wohnung oder wenn die letzte Prüfung lange her ist.</p>
-          <ul>
-            <li>Sichtprüfung von Leitungen, Steckdosen und Verteiler</li>
-            <li>Messung von Schutzleiter und Isolationswiderstand</li>
-            <li>Test der FI-Schutzschalter und Sicherungen</li>
-            <li>Prüfprotokoll mit klaren Empfehlungen</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="feature reveal">
-        <div class="fade-photo fade-photo--soft"><img src="img/sanierung-1.jpg" alt="Elektrosanierung in einer Wohnung während der Renovierung" loading="lazy"></div>
-        <div>
-          <span class="tag">Umbau, Sanierung, Haus</span>
-          <h3>Elektroinstallation bei Umbauten – bis zum ganzen Haus</h3>
-          <p class="muted">Anpassung und Modernisierung bestehender Elektroinstallationen bei Renovierungen oder Erweiterungen – bis hin zur kompletten Elektrik Ihrer Wohnung oder Ihres Hauses. Ich plane in Ruhe mit Ihnen und arbeite sauber.</p>
-          <ul>
-            <li>Neue Leitungen, Steckdosen, Schalter und Auslässe</li>
-            <li>Unterverteilung / Sicherungskasten erneuern, FI nachrüsten</li>
-            <li>Herd-, Durchlauferhitzer- und Starkstromanschlüsse</li>
-            <li>Abstimmung mit Maler, Trockenbau und Vermieter</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="feature reveal">
-        <div class="fade-photo fade-photo--soft"><img src="img/werkzeug.jpg" alt="Werkzeugkiste mit isoliertem Elektriker-Werkzeug" loading="lazy"></div>
-        <div>
-          <span class="tag">Kleinaufträge</span>
-          <h3>Kleine Aufträge? Gern – genau dafür bin ich da.</h3>
-          <p class="muted">Viele Betriebe winken bei kleinen Arbeiten ab. Ich nicht. Ein Anruf genügt.</p>
-          <ul>
-            <li>Steckdosen versetzen oder zusätzlich setzen</li>
-            <li>Lampen, Leuchten und Außenbeleuchtung montieren</li>
-            <li>Schalter, Dimmer und Bewegungsmelder tauschen</li>
-            <li>Fehlersuche, wenn die Sicherung immer wieder fliegt</li>
-          </ul>
-        </div>
-      </article>
-
-      <div class="cards">
-        <div class="card reveal">
-          <svg><use href="#i-office"/></svg>
-          <h3>Elektroinstallation für Büros und Geschäfte</h3>
-          <p>Planung und Installation der elektrischen Anlagen für Ihr Büro oder Geschäft.</p>
-        </div>
-        <div class="card reveal">
-          <svg><use href="#i-shield"/></svg>
-          <h3>Sicherheits- und Alarmanlagen</h3>
-          <p>Installation von Sicherheits- und Alarmanlagen zum Schutz von Haus und Eigentum.</p>
-        </div>
-        <div class="card reveal">
-          <svg><use href="#i-net"/></svg>
-          <h3>Netzwerk &amp; Datenleitungen</h3>
-          <p>Netzwerkschränke, Patchfelder und LAN-Dosen – sauber verlegt und beschriftet.</p>
-        </div>
-        <div class="card reveal">
-          <svg><use href="#i-chip"/></svg>
-          <h3>Fehlersuche – meine Spezialität</h3>
-          <p>Elf Jahre Instandhaltung in der Industrie: Ich finde Fehler, wo andere aufgeben – in Verteilern, Steuerungen, Geräten und Verkabelung.</p>
-        </div>
-        <div class="card reveal">
-          <svg><use href="#i-bolt"/></svg>
-          <h3>Wallbox &amp; Batteriespeicher</h3>
-          <p>Ladestation fürs E-Auto oder Speicher für die PV-Anlage – mit Hochvolt-Wissen aus der Automobilindustrie, sicher abgesichert.</p>
-        </div>
-        <div class="card reveal">
-          <svg><use href="#i-plug"/></svg>
-          <h3>Starkstrom &amp; Geräteanschluss</h3>
-          <p>CEE-Anschlüsse, Großgeräte und Küchengeräte fachgerecht anschließen.</p>
-        </div>
-        <div class="card reveal">
-          <svg><use href="#i-lamp"/></svg>
-          <h3>Licht innen &amp; außen</h3>
-          <p>Leuchten, Außenlampen und Bewegungsmelder – damit es überall hell und sicher ist.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Kapitel 2 -->
-  <section class="chapter chapter--left" aria-labelledby="k2">
-    <div class="chapter-media chapter-media--dark"><img src="img/funken.jpg" alt="" aria-hidden="true" loading="lazy" data-flicker="glow"></div>
-    <svg class="volta" viewBox="0 0 160 300" aria-hidden="true">
-      <defs><linearGradient id="cu" x1="0" x2="1"><stop offset="0" stop-color="#7a3d1c"/><stop offset=".5" stop-color="#e08a4f"/><stop offset="1" stop-color="#7a3d1c"/></linearGradient><linearGradient id="zn" x1="0" x2="1"><stop offset="0" stop-color="#555b63"/><stop offset=".5" stop-color="#c9d0d8"/><stop offset="1" stop-color="#555b63"/></linearGradient></defs>
-      <g class="volta-stack"></g>
-      <path class="volta-wire" d="M120 40 C160 40 160 260 120 260" fill="none" stroke="#ffd23c" stroke-width="2"/>
-    </svg>
-    <div class="wrap">
-      <div class="chapter-text reveal">
-        <span class="chapter-year" aria-hidden="true">1800</span>
-        <span class="kicker">Meilensteine der Elektrik · 2 / 6</span>
-        <h2 id="k2">Alessandro Volta baut die erste Batterie</h2>
-        <p>Volta stapelt Kupfer- und Zinkscheiben, getrennt durch salzwassergetränkte Pappe – die Voltasche Säule. Zum ersten Mal fließt Strom gleichmäßig und dauerhaft, statt nur als kurzer Funke.</p>
-        <p class="muted">Nach ihm ist die Einheit benannt, die heute auf jeder Steckdose steht: das Volt.</p>
-        <button class="chapter-sound" type="button" data-chapter-sound="volta" aria-pressed="false"><svg aria-hidden="true"><use href="#i-sound"/></svg><span>Anhören</span></button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Arbeitsweise: ehrlich als Ein-Mann-Betrieb -->
-  <section class="section" id="arbeitsweise">
-    <img class="side-shot side-shot--left" src="img/trafo.jpg" alt="" aria-hidden="true" loading="lazy" data-flicker="hum">
-    <div class="wrap honest">
-      <div class="honest-photo fade-photo reveal">
-        <img src="img/portrait-2.jpg" alt="Rondehl Slater mit Werkzeugkoffer vor einem Wohnhaus in München" loading="lazy">
-      </div>
-      <div class="reveal">
-        <span class="kicker">Ehrlich gesagt</span>
-        <h2>Ein Mann. Volle Verantwortung. Etwas mehr Zeit.</h2>
-        <p class="lead">Elektro Slater ist ein junger Ein-Mann-Betrieb. Ich starte gerade durch – derzeit nebenberuflich – und will mich hier in München als Ihr fester Elektriker etablieren.</p>
-        <p class="muted">Fachlich kann ich alles, was ein Elektrobetrieb kann. Der Unterschied: Wo eine Firma mit zwei, drei Monteuren ein Haus in einer Woche fertig macht, arbeite ich allein. Deshalb schaue ich mir jedes Projekt vor Ort an und sage Ihnen ehrlich, wie lange ich ungefähr brauche. Es dauert dann meistens etwas länger – dafür ist der, der anfängt, auch der, der fertig macht. Zuverlässig, sauber und mit klarer Absprache.</p>
-        <ol class="steps">
-          <li><strong>Anruf oder Nachricht</strong><span>Sie schildern kurz, was Sie brauchen – gern mit Foto.</span></li>
-          <li><strong>Besichtigung vor Ort</strong><span>Ich schaue mir alles an und sage Ihnen ehrlich, wie lange es ungefähr dauert.</span></li>
-          <li><strong>Klares Angebot</strong><span>Sie wissen vorher, womit Sie rechnen können – bei Preis und Zeit.</span></li>
-          <li><strong>Saubere Ausführung</strong><span>Zuverlässig, ordentlich und nach DIN VDE.</span></li>
-          <li><strong>Prüfung &amp; Übergabe</strong><span>Messung, Erklärung und auf Wunsch Prüfprotokoll.</span></li>
-        </ol>
-        <div class="note">Tipp: Die Arbeitskosten für Handwerkerleistungen in Ihrem Haushalt können Sie in der Regel steuerlich geltend machen. Ich weise sie auf der Rechnung gesondert aus.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Kapitel 3 -->
-  <section class="chapter chapter--right" aria-labelledby="k3">
-    <div class="chapter-media"><img src="img/kupferspule.jpg" alt="Kupferspule" loading="lazy" data-flicker="glow"></div>
-    <div class="field" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-    <div class="wrap">
-      <div class="chapter-text reveal">
-        <span class="chapter-year" aria-hidden="true">1831</span>
-        <span class="kicker">Meilensteine der Elektrik · 3 / 6</span>
-        <h2 id="k3">Michael Faraday entdeckt die Induktion</h2>
-        <p>Faraday bewegt einen Magneten durch eine Drahtspule – und in der Spule fließt Strom. Bewegung wird zu Elektrizität.</p>
-        <p class="muted">Die elektromagnetische Induktion steckt in jedem Generator, jedem Elektromotor und jedem Transformator. Ohne sie gäbe es kein Kraftwerk – und kein Trafohäuschen an der Straßenecke.</p>
-        <button class="chapter-sound" type="button" data-chapter-sound="faraday" aria-pressed="false"><svg aria-hidden="true"><use href="#i-sound"/></svg><span>Anhören</span></button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Kapitel 4 -->
-  <section class="chapter chapter--left chapter--bulb" aria-labelledby="k4">
-    <div class="chapter-media chapter-media--dark"><img src="img/gluehbirne.jpg" alt="Glühbirne, die im Dunkeln flackert" loading="lazy" data-flicker="bulb"></div>
-    <div class="wrap">
-      <div class="chapter-text reveal">
-        <span class="chapter-year" aria-hidden="true">1879</span>
-        <span class="kicker">Meilensteine der Elektrik · 4 / 6</span>
-        <h2 id="k4">Thomas Edison: Licht auf Knopfdruck</h2>
-        <p>Edison bringt eine Glühlampe mit Kohlefaden zum Leuchten, die lange genug hält, um alltagstauglich zu sein. Fast zeitgleich forscht Joseph Swan in England an derselben Idee.</p>
-        <p class="muted">Mit der Glühbirne beginnt die Elektrifizierung der Haushalte – und damit der Beruf, den ich heute ausübe.</p>
-        <button class="chapter-sound" type="button" data-chapter-sound="edison" aria-pressed="false"><svg aria-hidden="true"><use href="#i-sound"/></svg><span>Anhören</span></button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Bilder -->
-  <section class="section ring-section" id="bilder" aria-label="Bilder aus meiner Arbeit">
-    <canvas class="ring-bolts" aria-hidden="true"></canvas>
-    <div class="wrap">
-      <div class="ring" data-ring>
-        <img class="ring-card" src="img/unterverteilung.jpg" alt="Neu verdrahtete Unterverteilung" loading="lazy" decoding="async">
-        <img class="ring-card" src="img/treppenhaus-verteiler.jpg" alt="Arbeit am Verteiler im Treppenhaus" loading="lazy" decoding="async">
-        <img class="ring-card" src="img/netzwerkschrank.jpg" alt="Netzwerkschrank mit Patchkabeln" loading="lazy" decoding="async">
-        <img class="ring-card" src="img/sanierung-2.jpg" alt="Wohnung während der Elektrosanierung" loading="lazy" decoding="async">
-        <img class="ring-card" src="img/verteiler.jpg" alt="Unterverteilung mit Leitungsschutzschaltern und Steckdosen" loading="lazy" decoding="async">
-        <img class="ring-card" src="img/platinen.jpg" alt="Geöffnetes Gerät mit Steuerplatinen" loading="lazy" decoding="async">
-        <img class="ring-card" src="img/aussenleuchte.jpg" alt="Montage einer Außenleuchte an der Hauswand" loading="lazy" decoding="async">
-        <img class="ring-card" src="img/messgeraet.jpg" alt="Installationstester im Einsatz" loading="lazy" decoding="async">
-        <img class="ring-card" src="img/kabeltrasse.jpg" alt="Kabeltrasse mit Leitungen" loading="lazy" decoding="async">
-        <img class="ring-card" src="img/gewerbe.jpg" alt="Großküchengerät mit CEE-Steckern" loading="lazy" decoding="async">
-        <img class="ring-card" src="img/modulsimulator.jpg" alt="Platine mit orangefarbener Verdrahtung" loading="lazy" decoding="async">
-        <img class="ring-card" src="img/sanierung-1.jpg" alt="Leitungen setzen in der Wohnung" loading="lazy" decoding="async">
       </div>
     </div>
   </section>
@@ -484,6 +485,7 @@
       </div>
     </div>
   </section>
+
 
 </main>
 

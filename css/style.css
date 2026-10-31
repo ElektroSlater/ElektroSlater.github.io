@@ -606,3 +606,22 @@ p { margin: 0 0 1em; }
 .chapter-sound[aria-pressed="true"] { border-color: var(--volt); color: var(--volt); background: rgba(255, 210, 60, .08); }
 .chapter-sound[aria-pressed="true"] svg { animation: sound-pulse 1s ease-in-out infinite; }
 @keyframes sound-pulse { 50% { transform: scale(1.18); } }
+
+/* Startbereich: Schlagworte zu den Leistungen */
+.hero-chips { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 0; margin: 0 auto 26px; max-width: 560px; }
+.hero-chips a {
+  display: inline-block; padding: 7px 14px; border-radius: 999px; text-decoration: none; font-size: 14px; font-weight: 500;
+  color: #e4e9ef; background: rgba(0, 0, 0, .35); border: 1px solid rgba(255, 255, 255, .22); backdrop-filter: blur(6px);
+  transition: border-color .2s, color .2s;
+}
+.hero-chips a:hover { border-color: var(--volt); color: var(--volt); }
+.is-powered .hero-content > :nth-child(3) { transition-delay: 2.6s; }
+.is-powered .hero-content > :nth-child(4) { transition-delay: 2.9s; }
+.is-powered .hero-content > :nth-child(5) { transition-delay: 3.2s; }
+/* Über mich steht jetzt mitten auf der Seite – keine Überlappung mehr mit dem Gewitter */
+.about { margin-top: 0; }
+@media (max-width: 900px) { .about { margin-top: 0; } }
+.hours-line { display: flex; align-items: center; gap: 10px; color: #d6dbe2; font-weight: 500; margin: 6px 0 4px; }
+.hours-line svg { width: 18px; height: 18px; color: var(--volt); flex: none; }
+/* Leistungen direkt nach dem Gewitter: etwas näher heranrücken */
+#leistungen { padding-top: clamp(60px, 8vw, 110px); }
