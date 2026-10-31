@@ -158,7 +158,8 @@
     if (ac.state === 'suspended') ac.resume();
     stop();
     var out = gain(0); out.connect(master);
-    out.gain.linearRampToValueAtTime(1, ac.currentTime + 0.6);
+    out.gain.setValueAtTime(0, ac.currentTime);
+    out.gain.linearRampToValueAtTime(1, ac.currentTime + 0.8);
     var c = { btn: btn, out: out, timers: [], nodes: [] };
     SOUNDS[btn.getAttribute('data-chapter-sound')](out, c.timers, c.nodes);
     current = c;
@@ -166,19 +167,48 @@
     btn.querySelector('span').textContent = 'Stopp';
   }
 
+  // Nach dem ersten Klick/Tipp auf der Seite darf der Browser Ton abspielen –
+  // dann starten die Kapitel-Geräusche von selbst, sobald man zum Kapitel scrollt.
+  var unlocked = false, skipped = [], inView = [];
+  function muted() { try { return localStorage.getItem('slater-ton-v2') === 'aus'; } catch (e) { return false; } }
+  function autoPlay() {
+    if (!unlocked || muted()) return;
+    for (var i = 0; i < inView.length; i++) {
+      var b = inView[i];
+      if (skipped.indexOf(b) < 0) { if (!current || current.btn !== b) play(b); return; }
+    }
+  }
+  function unlock() {
+    ['pointerdown', 'keydown', 'touchstart'].forEach(function (t) { document.removeEventListener(t, unlock, true); });
+    if (!init()) return;
+    ac.resume();
+    unlocked = true;
+    setTimeout(autoPlay, 50);
+  }
+  ['pointerdown', 'keydown', 'touchstart'].forEach(function (t) { document.addEventListener(t, unlock, true); });
+
   buttons.forEach(function (btn) {
     btn.addEventListener('click', function () {
-      if (current && current.btn === btn) stop(); else play(btn);
+      if (current && current.btn === btn) { stop(); if (skipped.indexOf(btn) < 0) skipped.push(btn); }
+      else { skipped = skipped.filter(function (x) { return x !== btn; }); play(btn); }
     });
   });
 
-  // Beim Wegscrollen aus dem Kapitel verstummt das Geräusch
+  // Kapitel zur Hälfte im Bild: Geräusch an. Kapitel verlassen: Geräusch aus.
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (current && e.intersectionRatio < 0.15 && e.target.contains(current.btn)) stop();
+        var b = e.target.querySelector('[data-chapter-sound]');
+        if (e.intersectionRatio >= 0.5) {
+          if (inView.indexOf(b) < 0) inView.push(b);
+        } else if (e.intersectionRatio < 0.15) {
+          inView = inView.filter(function (x) { return x !== b; });
+          skipped = skipped.filter(function (x) { return x !== b; });
+          if (current && current.btn === b) stop();
+        }
       });
-    }, { threshold: 0.15 });
+      autoPlay();
+    }, { threshold: [0, 0.15, 0.5] });
     buttons.forEach(function (b) { io.observe(b.closest('section')); });
   }
   document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); });
