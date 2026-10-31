@@ -165,7 +165,8 @@
       src.connect(lp); lp.connect(g); g.connect(master);
       src.start(t0, rand(0, 1)); src.stop(t0 + dur + 0.1);
     }
-    return { set: set, setVisible: setVisible, thunder: thunder };
+    function isRunning() { return !!ac && ac.state === 'running'; }
+    return { set: set, setVisible: setVisible, thunder: thunder, isRunning: isRunning };
   })();
 
   // Ton ist von Anfang an AN. Browser lassen Ton aber erst nach dem ersten Klick, Tipp oder
@@ -184,8 +185,16 @@
     EVENTS.forEach(function (t) { document.removeEventListener(t, unlock, true); });
     if (!muted) Sound.set('on');
   }
+  function tryOnScroll() {
+    if (muted) return;
+    if (!Sound.isRunning()) Sound.set('on');
+    if (Sound.isRunning()) {
+      ['wheel', 'scroll', 'touchmove'].forEach(function (t) { window.removeEventListener(t, tryOnScroll); });
+    }
+  }
   label();
   if (!muted) {
+    ['wheel', 'scroll', 'touchmove'].forEach(function (t) { window.addEventListener(t, tryOnScroll, { passive: true }); });
     Sound.set('on'); // klappt sofort, wenn der Browser es erlaubt
     EVENTS.forEach(function (t) { document.addEventListener(t, unlock, true); });
   }
@@ -210,15 +219,18 @@
     new IntersectionObserver(function (e) { visible = e[0].isIntersecting; setRunning(); }).observe(hero);
   }
   document.addEventListener('visibilitychange', setRunning);
-  // Ton nur ganz oben: sobald man losscrollt, verstummt das Gewitter – oben setzt es wieder ein
-  var atTop = true;
-  window.addEventListener('scroll', function () {
-    var t = window.scrollY < 60;
-    if (t !== atTop) { atTop = t; Sound.setVisible(atTop && !document.hidden); }
-  }, { passive: true });
+  // Ton gehört zum Gewitter: hörbar, solange das Gewitter mindestens zur Hälfte im Bild ist.
+  // Beim Weiterscrollen zum nächsten Abschnitt verstummt es, beim Zurückscrollen kommt es wieder.
+  var stormInView = true;
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) {
+      stormInView = e[0].intersectionRatio > 0.5;
+      Sound.setVisible(stormInView && !document.hidden);
+    }, { threshold: [0, 0.5, 1] }).observe(hero);
+  }
   function setRunning() {
     var should = visible && !document.hidden;
-    Sound.setVisible(should && atTop);
+    Sound.setVisible(should && stormInView);
     if (should && !running) { running = true; last = 0; requestAnimationFrame(frame); }
     else if (!should) running = false;
   }
