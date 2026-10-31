@@ -625,3 +625,18 @@ p { margin: 0 0 1em; }
 .hours-line svg { width: 18px; height: 18px; color: var(--volt); flex: none; }
 /* Leistungen direkt nach dem Gewitter: etwas näher heranrücken */
 #leistungen { padding-top: clamp(60px, 8vw, 110px); }
+
+/* Arbeitszimmer und Firmenwagen: klein, weich ausgeblendet, mit kurzer Unterschrift */
+.workshots { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 4vw, 56px); margin-top: clamp(50px, 7vw, 90px); max-width: 980px; }
+.workshot { margin: 0; }
+.workshot-img { aspect-ratio: 3 / 2; overflow: hidden; }
+.workshot-img img {
+  width: 100%; height: 100%; object-fit: cover; filter: saturate(.9) brightness(.9);
+  -webkit-mask-image: radial-gradient(closest-side, #000 58%, transparent 100%);
+  mask-image: radial-gradient(closest-side, #000 58%, transparent 100%);
+  transition: transform 1.2s ease, filter .6s;
+}
+.workshot:hover .workshot-img img { transform: scale(1.04); filter: none; }
+.workshot figcaption { margin-top: 6px; text-align: center; color: var(--muted); font-size: 14.5px; }
+.workshot figcaption strong { display: block; color: var(--text); font-size: 16px; margin-bottom: 2px; }
+@media (max-width: 700px) { .workshots { grid-template-columns: 1fr; } }
