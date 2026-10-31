@@ -110,7 +110,9 @@
 
   /* ---------- Ton (optional) ---------- */
   var Sound = (function () {
-    var ac = null, master = null, noise = null, on = false;
+    // Lautstärke: aus, leise (startet von selbst beim ersten Klick/Tippen) oder laut (per Knopf)
+    var ac = null, master = null, noise = null, on = false, level = 0, seen = true;
+    var LEVELS = { off: 0, quiet: 0.14, loud: 0.9 };
     function init() {
       var AC = window.AudioContext || window.webkitAudioContext;
       if (!AC) return false;
@@ -133,16 +135,22 @@
       src2.connect(lp2); lp2.connect(g2); g2.connect(master); src2.start();
       return true;
     }
-    function toggle() {
-      if (!ac && !init()) return false;
-      on = !on;
-      if (ac.state === 'suspended') ac.resume();
+    function apply() {
+      if (!ac) return;
       master.gain.cancelScheduledValues(ac.currentTime);
-      master.gain.linearRampToValueAtTime(on ? 0.9 : 0, ac.currentTime + 0.6);
-      return on;
+      master.gain.setValueAtTime(master.gain.value, ac.currentTime);
+      master.gain.linearRampToValueAtTime(seen ? level : 0, ac.currentTime + 1.2);
     }
+    function set(mode) {
+      if (!ac && !init()) return false;
+      if (ac.state === 'suspended') ac.resume();
+      level = LEVELS[mode]; on = level > 0;
+      apply();
+      return ac.state !== 'suspended' || mode === 'off';
+    }
+    function setVisible(v) { seen = v; apply(); }
     function thunder(power, delay) {
-      if (!on || !ac) return;
+      if (!on || !ac || !seen) return;
       var t0 = ac.currentTime + delay;
       var src = ac.createBufferSource(); src.buffer = noise; src.playbackRate.value = rand(0.6, 0.9);
       var lp = ac.createBiquadFilter(); lp.type = 'lowpass';
@@ -157,15 +165,36 @@
       src.connect(lp); lp.connect(g); g.connect(master);
       src.start(t0, rand(0, 1)); src.stop(t0 + dur + 0.1);
     }
-    return { toggle: toggle, thunder: thunder };
+    return { set: set, setVisible: setVisible, thunder: thunder };
   })();
 
+  // Ton: leise automatisch, sobald der Browser es erlaubt (erster Klick, Tipp oder Tastendruck).
+  // Browser verbieten Ton ganz ohne Zutun des Besuchers – daher dieser Weg.
   var btn = document.querySelector('[data-sound]');
+  var mode = 'off', muted = false;
+  try { muted = localStorage.getItem('slater-ton') === 'aus'; } catch (e) {}
+  function label() {
+    if (!btn) return;
+    btn.setAttribute('aria-pressed', mode === 'off' ? 'false' : 'true');
+    btn.querySelector('span').textContent = mode === 'off' ? 'Gewitter hören' : mode === 'quiet' ? 'Lauter' : 'Ton aus';
+  }
+  function setMode(m) { mode = m; Sound.set(m); label(); }
+  function autoStart(e) {
+    if (btn && btn.contains(e.target)) return;
+    ['pointerdown', 'keydown', 'touchstart'].forEach(function (t) { document.removeEventListener(t, autoStart, true); });
+    if (!muted && mode === 'off') setMode('quiet');
+  }
+  if (!muted) {
+    ['pointerdown', 'keydown', 'touchstart'].forEach(function (t) { document.addEventListener(t, autoStart, true); });
+    // manche Browser erlauben Ton sofort – dann gleich leise starten
+    if (Sound.set('quiet')) { mode = 'quiet'; label(); } else { Sound.set('off'); }
+  }
   if (btn) {
     btn.addEventListener('click', function () {
-      var on = Sound.toggle();
-      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-      btn.querySelector('span').textContent = on ? 'Ton aus' : 'Gewitter hören';
+      var next = mode === 'off' ? 'loud' : mode === 'quiet' ? 'loud' : 'off';
+      try { localStorage.setItem('slater-ton', next === 'off' ? 'aus' : 'an'); } catch (e) {}
+      muted = next === 'off';
+      setMode(next);
     });
   }
 
@@ -183,6 +212,7 @@
   document.addEventListener('visibilitychange', setRunning);
   function setRunning() {
     var should = visible && !document.hidden;
+    Sound.setVisible(should);
     if (should && !running) { running = true; last = 0; requestAnimationFrame(frame); }
     else if (!should) running = false;
   }

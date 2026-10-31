@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#07090c">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2307090c'/%3E%3Cpath d='M36 6 14 36h14l-4 22 24-32H34z' fill='%23ffd23c'/%3E%3C/svg%3E">
   <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=3">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -370,26 +370,26 @@
   </section>
 
   <!-- Bilder -->
-  <section class="section" id="bilder">
+  <section class="section reel-section" id="bilder" aria-label="Bilder aus meiner Arbeit">
     <img class="side-shot side-shot--right" src="img/plasmakugel.jpg" alt="" aria-hidden="true" loading="lazy" data-flicker="glow">
     <div class="wrap">
-      <div class="section-head reveal">
-        <span class="kicker">Bilder</span>
-        <h2>Aus meiner Arbeit</h2>
-      </div>
-      <div class="gallery">
-        <figure><img src="img/unterverteilung.jpg" alt="Neu verdrahtete Unterverteilung" loading="lazy"><figcaption>Unterverteilung neu aufgebaut</figcaption></figure>
-        <figure><img src="img/treppenhaus-verteiler.jpg" alt="Arbeit am Verteiler im Treppenhaus" loading="lazy"><figcaption>Arbeiten am Hausverteiler</figcaption></figure>
-        <figure><img src="img/netzwerkschrank.jpg" alt="Netzwerkschrank mit Patchkabeln" loading="lazy"><figcaption>Netzwerkschrank</figcaption></figure>
-        <figure><img src="img/sanierung-2.jpg" alt="Wohnung während der Elektrosanierung" loading="lazy"><figcaption>Wohnungssanierung</figcaption></figure>
-        <figure><img src="img/verteiler.jpg" alt="Unterverteilung mit Leitungsschutzschaltern und Steckdosen" loading="lazy"><figcaption>Verteilung mit Außensteckdosen</figcaption></figure>
-        <figure><img src="img/platinen.jpg" alt="Geöffnetes Gerät mit Steuerplatinen" loading="lazy"><figcaption>Fehlersuche an der Steuerung</figcaption></figure>
-        <figure><img src="img/aussenleuchte.jpg" alt="Montage einer Außenleuchte an der Hauswand" loading="lazy"><figcaption>Außenleuchte montieren</figcaption></figure>
-        <figure><img src="img/messgeraet.jpg" alt="Installationstester im Einsatz" loading="lazy"><figcaption>Messen und Prüfen</figcaption></figure>
-        <figure><img src="img/kabeltrasse.jpg" alt="Kabeltrasse mit Leitungen" loading="lazy"><figcaption>Kabelwege</figcaption></figure>
-        <figure><img src="img/gewerbe.jpg" alt="Großküchengerät mit CEE-Steckern" loading="lazy"><figcaption>Gewerbegeräte anschließen</figcaption></figure>
-        <figure><img src="img/modulsimulator.jpg" alt="Platine mit orangefarbener Verdrahtung" loading="lazy"><figcaption>Verdrahtung in der Werkstatt</figcaption></figure>
-        <figure><img src="img/sanierung-1.jpg" alt="Leitungen setzen in der Wohnung" loading="lazy"><figcaption>Neue Leitungen setzen</figcaption></figure>
+      <div class="reel" data-reel>
+        <div class="reel-bg" aria-hidden="true"></div>
+        <canvas class="reel-bolt" aria-hidden="true"></canvas>
+        <img class="reel-shot" src="img/unterverteilung.jpg" alt="Neu verdrahtete Unterverteilung" loading="lazy" decoding="async">
+        <img class="reel-shot" src="img/treppenhaus-verteiler.jpg" alt="Arbeit am Verteiler im Treppenhaus" loading="lazy" decoding="async">
+        <img class="reel-shot" src="img/netzwerkschrank.jpg" alt="Netzwerkschrank mit Patchkabeln" loading="lazy" decoding="async">
+        <img class="reel-shot" src="img/sanierung-2.jpg" alt="Wohnung während der Elektrosanierung" loading="lazy" decoding="async">
+        <img class="reel-shot" src="img/verteiler.jpg" alt="Unterverteilung mit Leitungsschutzschaltern und Steckdosen" loading="lazy" decoding="async">
+        <img class="reel-shot" src="img/platinen.jpg" alt="Geöffnetes Gerät mit Steuerplatinen" loading="lazy" decoding="async">
+        <img class="reel-shot" src="img/aussenleuchte.jpg" alt="Montage einer Außenleuchte an der Hauswand" loading="lazy" decoding="async">
+        <img class="reel-shot" src="img/messgeraet.jpg" alt="Installationstester im Einsatz" loading="lazy" decoding="async">
+        <img class="reel-shot" src="img/kabeltrasse.jpg" alt="Kabeltrasse mit Leitungen" loading="lazy" decoding="async">
+        <img class="reel-shot" src="img/gewerbe.jpg" alt="Großküchengerät mit CEE-Steckern" loading="lazy" decoding="async">
+        <img class="reel-shot" src="img/modulsimulator.jpg" alt="Platine mit orangefarbener Verdrahtung" loading="lazy" decoding="async">
+        <img class="reel-shot" src="img/sanierung-1.jpg" alt="Leitungen setzen in der Wohnung" loading="lazy" decoding="async">
+        <div class="reel-flash" aria-hidden="true"></div>
+        <div class="reel-progress" aria-hidden="true"><i></i></div>
       </div>
     </div>
   </section>
@@ -493,12 +493,7 @@
   </div>
 </footer>
 
-<div class="lightbox" role="dialog" aria-modal="true" aria-label="Bild vergrößert">
-  <button type="button" aria-label="Schließen">×</button>
-  <figure><img src="" alt=""><p></p></figure>
-</div>
-
-<script src="js/storm.js" defer></script>
-<script src="js/main.js" defer></script>
+<script src="js/storm.js?v=3" defer></script>
+<script src="js/main.js?v=3" defer></script>
 </body>
 </html>
