@@ -593,3 +593,16 @@ p { margin: 0 0 1em; }
 /* Ton-Knopf oben rechts unter der Menüleiste */
 .sound-btn { top: 112px; bottom: auto; }
 @media (max-width: 860px) { .sound-btn { top: 90px; bottom: auto; right: 12px; } }
+
+/* Anhören-Knopf in den Meilenstein-Kapiteln */
+.chapter-sound {
+  display: inline-flex; align-items: center; gap: 9px; margin-top: 10px;
+  padding: 9px 16px 9px 12px; border-radius: 999px; cursor: pointer;
+  background: rgba(143, 194, 255, .08); border: 1px solid rgba(143, 194, 255, .4); color: #cfe2ff;
+  font: 600 14px "Inter", sans-serif; transition: background .2s, border-color .2s, color .2s;
+}
+.chapter-sound svg { width: 18px; height: 18px; }
+.chapter-sound:hover { background: rgba(143, 194, 255, .16); }
+.chapter-sound[aria-pressed="true"] { border-color: var(--volt); color: var(--volt); background: rgba(255, 210, 60, .08); }
+.chapter-sound[aria-pressed="true"] svg { animation: sound-pulse 1s ease-in-out infinite; }
+@keyframes sound-pulse { 50% { transform: scale(1.18); } }
